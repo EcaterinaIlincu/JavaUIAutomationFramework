@@ -7,13 +7,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverManager {
-    private static  String webDriverType = "Firefox";
+    private static String webDriverType = "Chrome";
     private static DriverManager instance;
     private WebDriver driver;
 
-    private DriverManager(){
-        switch(webDriverType.toUpperCase()){
+    private DriverManager() {
+        switch (webDriverType.toUpperCase()) {
             case "CHROME":
+                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
                 driver = new ChromeDriver();
                 System.out.println("The Chrome Driver is initiated");
                 break;
@@ -35,14 +36,14 @@ public class DriverManager {
         }
     }
 
-    public static DriverManager getInstance(){
-        if(instance == null){
+    public static DriverManager getInstance() {
+        if (instance == null) {
             instance = new DriverManager();
         }
         return instance;
     }
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         return driver;
     }
 }
