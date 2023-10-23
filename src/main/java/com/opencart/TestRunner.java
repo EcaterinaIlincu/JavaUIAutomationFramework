@@ -2,10 +2,7 @@ package com.opencart;
 
 import com.opencart.managers.DriverManager;
 import com.opencart.managers.RandomDataManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WindowType;
+import org.openqa.selenium.*;
 
 public class TestRunner {
     public static void main(String[] args) throws InterruptedException {
@@ -16,11 +13,11 @@ public class TestRunner {
 
         // New Window Code
         driver.switchTo().newWindow(WindowType.TAB);
-        driver.get("https:/opencart.antropy.co.uk/");
+        driver.get("https://andreisecuqa.host");
         Thread.sleep(2000);
 
         //Find element by xpath
-        WebElement myAccountIcon = driver.findElement(By.xpath("//i[@class='fa fa-user']"));
+        WebElement myAccountIcon = driver.findElement(By.xpath("//i[@class='fa-solid fa-user']"));
 
         myAccountIcon.click();
 
@@ -48,22 +45,21 @@ public class TestRunner {
         String randomEmail = RandomDataManager.generateRandomEmail();
         emailInput.sendKeys(randomEmail);
 
-        WebElement phoneInput = driver.findElement(By.cssSelector("#input-telephone"));
-        phoneInput.sendKeys(RandomDataManager.generatePhoneNumber());
 
         WebElement passwordInput = driver.findElement(By.cssSelector("#input-password"));
         String password = RandomDataManager.generatePassword();
         passwordInput.sendKeys(password);
-
-        WebElement confirmPassword = driver.findElement(By.cssSelector("#input-confirm"));
-        confirmPassword.sendKeys(password);
         System.out.println(password);
 
-        WebElement termsAndConditionsCheckbox = driver.findElement(By.xpath("//input[@name='agree']"));
-        termsAndConditionsCheckbox.click();
+        WebElement registerButton = driver.findElement(By.xpath("//button[normalize-space()='Continue']"));
+        WebElement termsAndConditionsToggleBar = driver.findElement(By.xpath("//input[@name='agree']"));
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+        je.executeScript("arguments[0].scrollIntoView(true);", termsAndConditionsToggleBar);
+        Thread.sleep(3000);
+        termsAndConditionsToggleBar.click();
 
-        WebElement registerButton = driver.findElement(By.xpath("//input[@value='Continue']"));
         registerButton.click();
+
 
         Thread.sleep(5000);
 
