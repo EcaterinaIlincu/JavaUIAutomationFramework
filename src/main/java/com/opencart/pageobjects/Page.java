@@ -9,15 +9,15 @@ public abstract class Page {
 
     public Page(WebDriver driver){
         PageFactory.initElements(driver, this);
-
     }
+
      @FindBy(xpath = "//i[@class='fa-solid fa-user']")
     protected WebElement myAccountIcon;
 
     @FindBy(xpath = "//a[normalize-space()='Register']")
     protected WebElement registerBtn;
 
-    @FindBy(xpath = "//button[normalize-space()='Continue']")
+    @FindBy(xpath = "//a[normalize-space()='Login']")
     protected WebElement loginBtn;
 
 

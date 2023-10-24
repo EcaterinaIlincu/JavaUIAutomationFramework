@@ -3,6 +3,7 @@ package com.opencart;
 import com.opencart.managers.DriverManager;
 import com.opencart.managers.RandomDataManager;
 import com.opencart.pageobjects.HomePage;
+import com.opencart.pageobjects.LoginPage;
 import com.opencart.pageobjects.RegisterPage;
 import org.openqa.selenium.WebDriver;
 
@@ -24,8 +25,26 @@ public class TestRunnerWithPageObjects {
 
        registerPage.fillInTheRegisterForm(RandomDataManager.generatedFirstName(),RandomDataManager.generateLastName(), randomEmail, password, true );
         registerPage.clickTheContinueButton();
+        Thread.sleep(2000);
+
+        LoginPage loginpage = new LoginPage(driver);
+
+        loginpage.clickTheLogoutButton();
         Thread.sleep(1000);
-       DriverManager.getInstance().tearDown();
+
+        loginpage.navigateToLoginPageFromHeader();
+
+
+        loginpage.fillInTheLoginForm(randomEmail, password);
+        loginpage.clickTheLoginButton();
+        Thread.sleep(1000);
+
+        loginpage.clickTheLogoutButton();
+        Thread.sleep(1000);
+
+
+
+        DriverManager.getInstance().tearDown();
 
         System.out.println("The execution is over");
 

@@ -10,6 +10,8 @@ public class RegisterPage extends Page {
     public RegisterPage (WebDriver driver){
         super(driver);
     }
+
+
    @FindBy(xpath = "//input[@id='input-firstname']")
     private WebElement firstNameInput;
 
