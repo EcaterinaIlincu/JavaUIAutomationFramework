@@ -14,10 +14,26 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>4.14.1</selenium.version>
         <javafaker.version>1.0.2</javafaker.version>
+        <junitjupiter.version>5.10.0</junitjupiter.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junitjupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junitjupiter.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
