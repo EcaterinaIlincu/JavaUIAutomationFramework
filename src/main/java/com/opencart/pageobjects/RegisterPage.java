@@ -45,5 +45,9 @@ public class RegisterPage extends Page {
         continueBtn.click();
     }
 
+    public void scrollToTheElementFirstName(){
+        ScrollManager.scrollToTheElement(firstNameInput);
+    }
+
 
 }
