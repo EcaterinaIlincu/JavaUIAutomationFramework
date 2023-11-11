@@ -1,5 +1,6 @@
 package com.opencart.stepdefinitions;
 
+import com.opencart.managers.ConfigReaderManager;
 import com.opencart.managers.DriverManager;
 import com.opencart.pageobjects.RegisterPage;
 import io.cucumber.java.en.Given;
@@ -26,10 +27,10 @@ public class GenericSteps {
         Assertions.assertTrue(currentUrlContainsKeyword, "The keyword: " + keyWordFromTheUrl + " is present in " + currentUrl);
 
     }
-
+    //the property from config properties is used here
     @Given("{string} endpoint is accessed")
     public void endpointIsAccessed(String endpointValue) {
-        driver.get("https://andreisecuqa.host" + endpointValue);
+        driver.get(ConfigReaderManager.getPropertyValue("url") + endpointValue);
     }
 
     @Then("the following list of error messages is displayed:")
