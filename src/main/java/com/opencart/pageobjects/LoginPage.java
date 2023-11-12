@@ -28,9 +28,6 @@ public class LoginPage extends Page {
         passwordInput.sendKeys(password);
     }
 
-    public void clickTheLoginButton(){
-        loginBtn.click();
-    }
 
     public void clickTheLogoutButton(){
         myAccountIcon.click();

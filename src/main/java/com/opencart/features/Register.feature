@@ -1,3 +1,4 @@
+@run
 Feature: Register Flow Test Suite
 
   Background:
@@ -10,29 +11,39 @@ Feature: Register Flow Test Suite
 
   Scenario: The Account Page url is opened when the registration is successful
     And registerLink from Header menu is clicked
-    When the register form is populated with valid random data
-    And Continue button is clicked
+    When the following form from "RegisterPage" is populated as follow:
+      | firstNameInput | randomfirstName |
+      | lastNameInput  | randomlastName  |
+      | emailInput     | randomemail     |
+      | passwordInput  | randompassword  |
+    And the "privacyToggle" from "RegisterPage" is clicked
+    And the "continueBtn" from "RegisterPage" is clicked
     Then the current url contains "route=account/success" keyword
 
   Scenario: User remains on registerPage when the continue button is not clicked
-    When the register form is populated with valid random data
+    When the following form from "RegisterPage" is populated as follow:
+      | firstNameInput | randomfirstName |
+      | lastNameInput  | randomlastName  |
+      | emailInput     | randomemail     |
+      | passwordInput  | randompassword  |
     Then the current url contains "route=account/register" keyword
 
-  @Run
+  @Smoke
   Scenario Outline: An error message is displayed when invalid <impacted attribute> is used for register flow
-    And  the register form is populated with the following data:
-      | firstName | <firstName>    |
-      | lastName  | <lastName>     |
-      | email     | <emailData>    |
-      | password  | <passwordData> |
-    When Continue button is clicked
+    When the following form from "RegisterPage" is populated as follow:
+      | firstNameInput | <firstName>    |
+      | lastNameInput  | <lastName>     |
+      | emailInput     | <emailData>    |
+      | passwordInput  | <passwordData> |
+    And the "privacyToggle" from "RegisterPage" is clicked
+    And  the "continueBtn" from "RegisterPage" is clicked
     Then the following list of error messages is displayed:
       | <impacted attribute> must be between 1 and 32 characters! |
     Examples:
-      | impacted attribute | firstName                             | lastName                              | emailData | passwordData |
-      | First Name         | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y113 | Random                                | Random    | Random       |
-      | Last Name          | Random                                | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y224 | Random    | Random       |
-      | First Name         | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y113 | Random                                | Random    | Random       |
-      | Last Name          | Random                                | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y224 | Random    | Random       |
+      | impacted attribute | firstName                             | lastName                              | emailData   | passwordData   |
+      | First Name         | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y113 | RandomlastName                        | RandomEmail | RandomPassword |
+      | Last Name          | RandomfirstName                       | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y224 | RandomEmail | RandomPassword |
+      | First Name         | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y113 | RandomlastName                        | RandomEmail | RandomPassword |
+      | Last Name          | RandomfirstName                       | t55yy5y75y5y5y5y5yy5y5y5y5y5yy5y5y224 | RandomEmail | RandomPassword |
 
 

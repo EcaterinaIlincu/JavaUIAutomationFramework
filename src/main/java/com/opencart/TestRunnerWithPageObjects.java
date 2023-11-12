@@ -36,7 +36,6 @@ public class TestRunnerWithPageObjects {
 
 
         loginpage.fillInTheLoginForm(randomEmail, password);
-        loginpage.clickTheLoginButton();
         Thread.sleep(1000);
 
         loginpage.clickTheLogoutButton();
